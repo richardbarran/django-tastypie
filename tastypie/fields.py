@@ -7,6 +7,7 @@ from django.utils import datetime_safe, importlib
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ApiFieldError, NotFound
 from tastypie.utils import dict_strip_unicode_keys
+from django.utils.encoding import smart_unicode
 
 
 class NOT_PROVIDED:
@@ -180,8 +181,7 @@ class CharField(ApiField):
     def convert(self, value):
         if value is None:
             return None
-
-        return unicode(value)
+        return smart_unicode(value)
 
 
 class FileField(ApiField):
